@@ -1,74 +1,72 @@
 <template>
-    <div id="pagination">
-        <div class="flex justify-center w-full">
-            <ul v-if="total_pages > 1" class="flex pl-0 list-none rounded my-2">
-                <li :class="{ 'hover:bg-gray-400': !isInFirstPage }">
+    <div class="flex justify-center w-full">
+        <ul v-if="total_pages > 1" class="flex pl-0 list-none rounded my-2">
+            <li :class="{ 'hover:bg-gray-400': !isInFirstPage }">
+                <button type="button" :class="{ 'cursor-not-allowed': isInFirstPage }" :disabled="isInFirstPage"
+                    @click="gotoFirst">
+                    &laquo;
+                </button>
+            </li>
+
+            <li :class="{ 'hover:bg-gray-400': !isInFirstPage }">
+                <button type="button" :class="{ 'cursor-not-allowed': isInFirstPage }" :disabled="isInFirstPage"
+                    @click="gotoPrevious">
+                    &lsaquo;
+                </button>
+            </li>
+
+            <template v-if="showDots('left')">
+                <li class=" hover:bg-gray-400" :class="{ 'bg-gray-600': isInFirstPage }">
                     <button type="button" :class="{ 'cursor-not-allowed': isInFirstPage }" :disabled="isInFirstPage"
-                        @click="gotoFirst">
-                        &laquo;
+                        @click="gotoPageNumber(1)">
+                        1
                     </button>
                 </li>
 
-                <li :class="{ 'hover:bg-gray-400': !isInFirstPage }">
-                    <button type="button" :class="{ 'cursor-not-allowed': isInFirstPage }" :disabled="isInFirstPage"
-                        @click="gotoPrevious">
-                        &lsaquo;
+                <li>
+                    <button type="button" :disabled="true">
+                        ...
+                    </button>
+                </li>
+            </template>
+
+            <li class=" hover:bg-gray-400" v-for="(page, index) in pages" :key="`pages_${index}`"
+                :class="{ 'bg-[var(--base-red)]': page === currentPage }">
+                <button type="button" :class="{ 'cursor-not-allowed': page === currentPage }"
+                    :disabled="page === currentPage" @click="gotoPageNumber(page)">
+                    {{ page }}
+                </button>
+            </li>
+
+            <template v-if="showDots('right')">
+                <li>
+                    <button type="button" :disabled="true">
+                        ...
                     </button>
                 </li>
 
-                <template v-if="showDots('left')">
-                    <li class=" hover:bg-gray-400" :class="{ 'bg-gray-600': isInFirstPage }">
-                        <button type="button" :class="{ 'cursor-not-allowed': isInFirstPage }" :disabled="isInFirstPage"
-                            @click="gotoPageNumber(1)">
-                            1
-                        </button>
-                    </li>
-
-                    <li>
-                        <button type="button" :disabled="true">
-                            ...
-                        </button>
-                    </li>
-                </template>
-
-                <li class=" hover:bg-gray-400" v-for="(page, index) in pages" :key="`pages_${index}`"
-                    :class="{ 'bg-[var(--base-red)]': page === currentPage }">
-                    <button type="button" :class="{ 'cursor-not-allowed': page === currentPage }"
-                        :disabled="page === currentPage" @click="gotoPageNumber(page)">
-                        {{ page }}
-                    </button>
-                </li>
-
-                <template v-if="showDots('right')">
-                    <li>
-                        <button type="button" :disabled="true">
-                            ...
-                        </button>
-                    </li>
-
-                    <li class=" hover:bg-gray-400" :class="{ 'bg-gray-600': isInLastPage }">
-                        <button type="button" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
-                            @click="gotoPageNumber(total_pages)">
-                            {{ total_pages }}
-                        </button>
-                    </li>
-                </template>
-
-                <li :class="{ 'hover:bg-gray-400': !isInLastPage }">
+                <li class=" hover:bg-gray-400" :class="{ 'bg-gray-600': isInLastPage }">
                     <button type="button" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
-                        @click="gotoNext">
-                        &rsaquo;
+                        @click="gotoPageNumber(total_pages)">
+                        {{ total_pages }}
                     </button>
                 </li>
+            </template>
 
-                <li :class="{ 'hover:bg-gray-400': !isInLastPage }">
-                    <button type="button" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
-                        @click="gotoLast">
-                        &raquo;
-                    </button>
-                </li>
-            </ul>
-        </div>
+            <li :class="{ 'hover:bg-gray-400': !isInLastPage }">
+                <button type="button" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
+                    @click="gotoNext">
+                    &rsaquo;
+                </button>
+            </li>
+
+            <li :class="{ 'hover:bg-gray-400': !isInLastPage }">
+                <button type="button" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
+                    @click="gotoLast">
+                    &raquo;
+                </button>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -156,7 +154,7 @@ export default {
             this.gotoPageNumber(this.currentPage + 1);
         },
         gotoPageNumber(pageNumber) {
-            this.$emit("pagechanged", pageNumber);
+            this.$emit("page_changed", pageNumber);
         }
     }
 
