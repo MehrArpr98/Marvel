@@ -12,13 +12,6 @@ body {
     background: linear-gradient(90deg, #2C2E30 -0.76%, #0E0E0E 50%);
   }
   
-  .red-shadow {
-    /*  background: #DC262652; */
-    /*  backdrop-filter: blur(160px) */
-    /*  backdrop-filter: #DC262652 blur(160px) saturate(150%); */
-    background: rgba(220, 38, 38, 0.32);
-    backdrop-filter: blur(160px);
-  }
   .skeleton-box::after {
       position: absolute;
       top: 0;

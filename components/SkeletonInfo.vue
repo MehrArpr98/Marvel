@@ -1,7 +1,7 @@
 <template>
     <main class="relative flex flex-col md:flex-row gap-4 my-5">
         <span
-            class="skeleton-box inline-block relative overflow-hidden bg-[var(--base-gray-3)] rounded-md mb-3 md:h-60 md:w-60"></span>
+            class="skeleton-box inline-block relative overflow-hidden bg-[var(--base-gray-3)] rounded-md mb-3 w-[180px] h-[180px] md:h-60 md:w-60"></span>
         <div class="flex flex-col gap-3 grow p-3 md:p-6">
             <span class="skeleton-box inline-block relative overflow-hidden bg-[var(--base-gray-3)] h-10 w-28"></span>
             <span class="skeleton-box inline-block relative overflow-hidden bg-[var(--base-gray-3)] h-3 w-1/2"></span>

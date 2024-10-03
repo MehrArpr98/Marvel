@@ -2,9 +2,10 @@
   <div class="min-h-screen flex flex-col">
     <div class="header ">
       <div class="container mx-auto flex flex-col gap-4 md:gap-8 py-3 md:py-4 px-3 md:px-0">
-        <img src="~/static/logo.png" alt="logo-img" class="w-24" />
+        <img src="~/static/logo.png" alt="logo-img" class="w-24 z-10" />
+        <img src="~/static/redShadow.svg" class="absolute w-1/2 md:w-[200px] h-[150px] left-0 md:left-[300px] scale-[2] md:scale-[4]"/>
         <div class="relative">
-          <!--  <div class="red-shadow absolute w-52 h-36 left-28 top-4 z-0"></div> -->
+           
           <div class="w-full flex gap-4 bg-[var(--base-background)] p-4 z-10 rounded-lg">
             <input type="text" placeholder="Search for characters..." v-model="searchText"
               class="grow px-3 py-2 rounded bg-[var(--base-gray-2)] text-gray-100 outline-none focus:border-[var(--base-gray-3)]">
@@ -14,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-[var(--base-background)] grow flex flex-col justify-between gap-10 py-10">
+    <div class="bg-[var(--base-background)] grow flex flex-col justify-between gap-10 py-10 z-10">
       <div class="w-full grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-fr container mx-auto px-3 md:px-0">
         <Card v-for="item in items" :key="item?.id" :item="item" />
       </div>

@@ -1,14 +1,15 @@
 <template>
     <div class="min-h-screen flex flex-col">
         <div class="header ">
-            <div class="container mx-auto flex flex-col gap-4 md:gap-8 py-3 md:py-4 px-3 md:px-0">
+            <div class="container mx-auto flex flex-col gap-4 md:gap-8 py-3 md:py-4 px-3 md:px-0 relative">
                 <img src="~/static/logo.png" alt="logo-img" class="w-24" />
+                <img src="~/static/redShadow.svg" class="absolute w-1/2 h-full md:w-[200px] md:h-[150px] left-0 md:left-[300px] top-[100px] scale-[2] md:scale-[4]"/>
                 <div class="relative flex flex-col md:flex-row gap-4 my-5">
                     <SkeletonInfo v-if="!itemExist" />
                     <template v-else> <img :src="`${item.thumbnail.path}.${item.thumbnail.extension}`"
-                            alt="marvel-character-img" class="rounded-md duration-300 mb-3 md:h-60 md:w-60" />
+                            alt="marvel-character-img" class="rounded-md duration-300 w-[180px] h-[180px] md:h-60 md:w-60" />
 
-                        <div class="flex flex-col gap-3 grow p-3 md:p-6">
+                        <div class="flex flex-col gap-3 grow p-0 md:p-6">
                             <h1 class="text-white text-[32px] leading-[50px]">{{ item.name }}</h1>
                             <div class="text-[var(--base-gray-5)] text-xs	">
                                 {{ item.description }}
@@ -25,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-[var(--base-background)] grow flex flex-col justify-between gap-10 py-10">
+        <div class="bg-[var(--base-background)] grow flex flex-col justify-between gap-10 py-10 z-10">
             <div class="container mx-auto flex flex-col gap-12">
                 <div class="flex flex-col gap-6 px-3 md:px-0">
                     <h1 class="text-white text-2xl">Comics</h1>
